@@ -14,11 +14,7 @@ public class Main {
         JogoController jogo = new JogoController();
         boolean veriMenu = false;
 
-        System.out.println("\u001B[91m" + "ERRO" + "\u001B[0m");
-
-        System.out.println("\u001B[33m" + "AVISO" + "\u001B[0m");
-
-        System.out.println("\u001B[32m" + "SUCESSO" + "\u001B[0m");
+        System.out.println("\u001B[32mBem Vindo\u001B[33m ao termo\u001B[34mV2\u001B[91m do Jeferson\u001B[0m");
 
         if (jogo.escolherPalavra() == null) {
             System.out.println("Lista Vazia!");
