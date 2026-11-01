@@ -2,7 +2,6 @@ package Application;
 
 import Entities.JogoController;
 
-import java.text.Normalizer;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -21,47 +20,52 @@ public class Main {
         } else {
             veriMenu = true;
         }
+        int menu = 0;
 
-        while(veriMenu) {
-            String palavraSorteada = jogo.escolherPalavra();
-            String palavraJogador = "";
+        do {
+            System.out.printf("[1] - Iniciar Jogo%n[2] - Adicionar Palavras%n[0] - Sair%nSelecione: ");
+            menu = sc.nextInt();
 
-            boolean ganhou = false;
+            switch (menu) {
+                case 1:
+                    String palavraSorteada = jogo.escolherPalavra();
+                    String palavraJogador = "";
+                    boolean ganhou = false;
+                    System.out.println("[][][][][]");
+                    do {
+                        do {
+                            System.out.print("Escolha uma palavra de 5 letras: ");
+                            palavraJogador = sc.next().toLowerCase().trim();
 
-            System.out.println("[][][][][]");
+                            if (!jogo.verificarPalavra(palavraJogador)) {
+                                System.out.println("A palavra deve conter exatamente 5 letras. Tente novamente!");
+                            }
 
-            do {
-                do {
-                    System.out.print("Escolha uma palavra de 5 letras: ");
-                    palavraJogador = sc.next().toLowerCase().trim();
+                        } while (!jogo.verificarPalavra(palavraJogador));
 
-                    if (!jogo.verificarPalavra(palavraJogador)) {
-                        System.out.println("A palavra deve conter exatamente 5 letras. Tente novamente!");
-                    }
+                        System.out.print(jogo.jogarRodada(palavraJogador));
 
-                } while (!jogo.verificarPalavra(palavraJogador));
+                        if (palavraJogador.equals(palavraSorteada)) {
+                            System.out.println("Você acertou!");
+                            ganhou = true;
+                        }
 
-                System.out.print(jogo.jogarRodada(palavraJogador));
-
-                if (palavraJogador.equals(palavraSorteada)) {
-                    System.out.println("Você acertou!");
-                    ganhou = true;
-                }
-
-            } while (!ganhou);
-
-
-
-
-
-
-
-
-            veriMenu = false;
-        }
+                    } while (!ganhou);
+                    break;
+                case 2:
 
 
 
+                    break;
+                case 0:
+                    System.out.println("Fechando Programa!6");
+
+                    break;
+                default:
+                    System.out.println("Opção invalida, tente novamente!");
+                    break;
+            }
+        } while(menu != 0);
 
 
 
